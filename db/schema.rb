@@ -15,12 +15,12 @@ ActiveRecord::Schema.define(version: 20170405041732) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "rate_limits", force: :cascade do |t|
+  create_table "requests", force: :cascade do |t|
     t.string   "ip_address"
     t.datetime "requested_at"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.index ["ip_address", "requested_at"], name: "index_rate_limits_on_ip_address_and_requested_at", using: :btree
+    t.index ["ip_address", "requested_at"], name: "index_requests_on_ip_address_and_requested_at", using: :btree
   end
 
 end

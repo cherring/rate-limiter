@@ -1,4 +1,4 @@
-class RateLimit < ActiveRecord::Base
+class Request < ActiveRecord::Base
 
   validates :ip_address, :requested_at, presence: true
 
