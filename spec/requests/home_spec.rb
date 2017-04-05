@@ -14,7 +14,19 @@ describe "Home Controller" do
     expect(Request.count).to eq(1)
   end
 
-  it 'renders a 429 if the rate limit threshold has been hit'
+  context 'hitting the rate limit' do
+    let!(:requests) do
+      (1..99).each { |number| Request.create(ip_address: '127.0.0.1', requested_at: number.seconds.ago )}
+    end
 
+    it 'renders a 429 if the rate limit threshold has been hit' do
+      get home_index_path
+      expect(response.status).to eq(200)
+      expect(response.body).to eq("ok")
+      get home_index_path
+      expect(response.status).to eq(429)
+      expect(response.body).to include("Rate limit exceeded, please try again")
+    end
 
+  end
 end
