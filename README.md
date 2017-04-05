@@ -1,24 +1,19 @@
-# README
+## Rate Limiter Coding challenge.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### To get running
 
-Things you may want to cover:
+- Install Ruby version 2.4.0, specified in .ruby-version if required
+- Install Bundler for Ruby verion if required
+- bundle install
+- bundle exec db:create
+- bundle exec db:migrate
 
-* Ruby version
+### The Code
 
-* System dependencies
+Is contained in app/controllers/home_controller.rb and app/models/request.rb and app/models/rate_limit.rb
 
-* Configuration
+### The tests
 
-* Database creation
+Are written in rspec. To run them, bundle exec rspec spec/
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+To read them, they are spec/requests/home_controller_spec.rb, spec/models/request_spec.rb and spec/models/rate_limit_spec.rb
