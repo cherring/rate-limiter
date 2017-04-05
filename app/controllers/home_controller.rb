@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-
+  
   after_action :record_rate_limit_request
 
   def index
