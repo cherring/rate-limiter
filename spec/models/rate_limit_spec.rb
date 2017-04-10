@@ -11,8 +11,8 @@ describe RateLimiter do
   context do
     let(:request_ip) { '127.0.0.1' }
     let(:other_ip) { '10.0.0.10' }
-    let!(:previous_requests) { (1..10).each { |number| Request.create(ip_address: request_ip, requested_at: number.minutes.ago)} }
-    let!(:other_requests) { (1..10).each { |number| Request.create(ip_address: other_ip, requested_at: number.minutes.ago)} }
+    let!(:previous_requests) { (1..10).each { |number| Request.add(request_ip, requested_at: number.minutes.ago)} }
+    let!(:other_requests) { (1..10).each { |number| Request.add(other_ip, requested_at: number.minutes.ago)} }
     let(:rate_limiter) { RateLimit.new(ip_address) }
 
     it 'can get the requests for a time period' do

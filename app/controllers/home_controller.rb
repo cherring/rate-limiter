@@ -14,7 +14,7 @@ class HomeController < ApplicationController
   end
 
   def record_rate_limit_request
-    Request.create(ip_address: request.remote_ip, requested_at: Time.zone.now)
+    Request.add(request.remote_ip)
   end
 
 end

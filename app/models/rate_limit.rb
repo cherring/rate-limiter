@@ -10,7 +10,7 @@ class RateLimit
   end
 
   def requests
-    @requests ||= Request.requests_for_ip_during_time_period(ip_address, time_period: time_period).limit(maximum_requests)
+    @requests ||= Request.requests_for_ip_during_time_period(ip_address, time_period: time_period)
   end
 
   def request_permitted?
@@ -19,7 +19,7 @@ class RateLimit
 
   def time_until_next_request_permitted
     interval = Time.zone.now - time_period # Gets the period we are limiting for in seconds
-    next_request_at = (requests.last.requested_at + interval)
+    next_request_at = (requests.last + interval)
     next_request_in = (next_request_at - Time.zone.now).to_i
     "Rate limit exceeded, please try again in #{next_request_in} seconds"
   end
