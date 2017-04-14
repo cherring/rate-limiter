@@ -1,4 +1,4 @@
-## Rate Limiter Coding challenge.
+## Rate Limiter Example.
 
 ### To get running
 
