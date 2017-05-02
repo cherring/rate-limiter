@@ -54,4 +54,13 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  config.before(:each) do
+    redis_connection = Redis.new
+    namespace = "requests_#{Rails.env}".to_sym
+    redis = Redis::Namespace.new(namespace, redis: redis_connection)
+    keys = redis.keys
+    redis.del(*keys) unless keys.empty?
+    expect(redis.keys.size).to eq(0)
+  end
 end

@@ -16,7 +16,7 @@ describe "Home Controller" do
 
   context 'hitting the rate limit' do
     let!(:requests) do
-      (1..99).each { |number| Request.create(ip_address: '127.0.0.1', requested_at: number.seconds.ago )}
+      (1..99).each { |number| Request.add('127.0.0.1', requested_at: number.seconds.ago )}
     end
 
     it 'renders a 429 if the rate limit threshold has been hit' do
